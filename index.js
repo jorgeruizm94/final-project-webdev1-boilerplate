@@ -1,6 +1,10 @@
 const countriesElem=document.querySelector(".countries")
 const dropDown=document.querySelector(".dropDown")
 const dropElem=document.querySelector(".drop")
+const region=document.querySelectorAll(".region")
+
+
+
 
 
 async function getCountry() {
@@ -20,16 +24,80 @@ function showCountry(data) {
   <img src="${data.flag}" alt="">
   </div>
   <div class="country-info">
-  <h5>${data.name}</h5>
+  <h5 class"countryName">${data.name}</h5>
   <p><strong>Population:</strong>${data.population}</p>
-  <p><strong>Region:</strong>${data.region}</p>
+  <p class="regionName"><strong>Region:</strong>${data.region}</p>
   <p><strong>Capital:</strong>${data.capital}</p>
   </div>`;
   countriesElem.appendChild(country)
+  country.addEventListener("click", () => {
+    showCountryDetail()
+  })
 }
 
-dropDown.addEventListener("click", ()=>{
+dropDown.addEventListener("click", ()=> {
 dropElem.classList.toggle("showDropDown")
 console.log("hello");
 })
+
+const regionName=document.getElementsByClassName("regionName")
+region.forEach(element => {
+  element.addEventListener("click", ()=>{
+    console.log(element);
+    Array.from(regionName).forEach(elem => {
+      console.log(elem.innerText)
+      if(elem.innerText.includes(element.innerText) || element.innerText=="All")
+      {elem.parentElement.parentElement.style.display="grid"}
+      else{elem.parentElement.parentElement.style.display="none"}
+    });
+  })
+});
+
+const search=document.querySelector(".search")
+
+const countryName=document.getElementsByClassName("countryName")
+search.addEventListener("input", () => {
+  console.log(search.value.toLowerCase());
+  Array.from(countryName).forEach(elem => {
+  
+    if(elem.innerText.toLowerCase().includes(search.value.toLowerCase()))
+    {elem.parentElement.parentElement.style.display="grid"}
+    else{elem.parentElement.parentElement.style.display="none"}
+  });
+})
+
+
+const countryModal=document.querySelector(".countryModal");
+
+function showCountryDetail(){
+  countryModal.classList.toggle("show")
+  countryModal.innerHTML=`<button class="back">Back</button>
+  <div class="modal">
+      <div class="leftModal">
+          <img src="${data.flag}" alt="">
+      </div>
+      <div class="rightModal">
+          <h1>${data.name}</h1>
+          <div class="modalInfo">
+              <div class="innerLeft inner">
+                  <p><strong>Native Name:</strong>${data.nativeName}</p>
+                  <p><strong>Population:</strong>${data.population}</p>
+                  <p><strong>Region:</strong>${data.region}</p>
+                  <p><strong>Sub-region:</strong>${data.subregion}</p>
+              </div>
+              <div class="innerRight inner">
+                  <p><strong>Capital:</strong>${data.capital}</p>
+                  <p><strong>Top Level Domain:</strong>${data.region}</p>
+                  <p><strong>Currencies:</strong>${data.capital}</p>
+                  <p><strong>Languages:</strong>${data.capital}</p>
+              </div>
+          </div>
+      </div>
+  </div>`
+
+  const back=countryModal.querySelector("back")
+back.addEventListener("click", () => {
+countryModal.classList.toggle("show")
+})
+}
 
