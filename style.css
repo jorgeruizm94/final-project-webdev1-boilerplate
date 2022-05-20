@@ -60,7 +60,10 @@ button {
     position: absolute;
     top: 1rem;
     right: 1;
+    cursor: pointer;
 }
+
+i {cursor: pointer;}
 
 .dropDownContainer {
     width: 200px;
@@ -93,6 +96,50 @@ padding: 17px 14px;
     margin: 0.5px;
 }
 
+.countries {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
 
+.country {
+    min-height: 350px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    width: 300px;
+    border-radius: 5px;
+    overflow: hidden;
+}
 
+.country-img {
+    height: 250px;
+}
+
+.country-img img {
+    height: 100%;
+    width: 100%;
+}
+
+.country-info {
+    padding: 20px 17px;
+}
+
+.country-info h5 {
+    padding: 8px 0;
+    font-size: 20px;
+    letter-spacing: 1px;
+
+}
+
+.country-info p {
+    letter-spacing: 1px;
+
+}
+
+.country-info p>strong {
+    font-weight: 600px;
+}
+
+.showDropDown {
+    display: none;
+}
 
