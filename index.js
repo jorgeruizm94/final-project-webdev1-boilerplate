@@ -36,7 +36,7 @@ function showCountry(data) {
   </div>`;
   countriesElem.appendChild(country)
   country.addEventListener("click", () => {
-    showCountryDetail()
+    showCountryDetail(data)
   })
 }
 
@@ -71,9 +71,13 @@ search.addEventListener("input", () => {
 })
 
 
-const countryModal=document.querySelector(".countryModal");
 
-function showCountryDetail(){
+
+
+
+
+const countryModal=document.querySelector(".countryModal");
+function showCountryDetail(data){
   countryModal.classList.toggle("show")
   countryModal.innerHTML=`<button class="back">Back</button>
   <div class="modal">
@@ -91,19 +95,22 @@ function showCountryDetail(){
               </div>
               <div class="innerRight inner">
                   <p><strong>Capital:</strong>${data.capital}</p>
-                  <p><strong>Top Level Domain:</strong>${data.region}</p>
-                  <p><strong>Currencies:</strong>${data.capital}</p>
-                  <p><strong>Languages:</strong>${data.capital}</p>
+                  <p><strong>Top Level Domain:</strong>${data.topLevelDomain.map(elem=>elem)}</p>
+                  <p><strong>Currencies:</strong>${data.currencies.map(elem=>elem.name)}</p>
+                  <p><strong>Languages:</strong>${data.languages.map(elem=>elem.name)}</p>
               </div>
           </div>
       </div>
-  </div>`
+  </div>`;
+const back=countryModal.querySelector(".back")
 
-  const back=countryModal.querySelector("back")
 back.addEventListener("click", () => {
 countryModal.classList.toggle("show")
 })
 }
+
+
+
 
 toggle.addEventListener("click", () => {
   document.body.classList.toggle("dark")
