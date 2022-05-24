@@ -2,6 +2,11 @@ const countriesElem=document.querySelector(".countries")
 const dropDown=document.querySelector(".dropDown")
 const dropElem=document.querySelector(".drop")
 const region=document.querySelectorAll(".region")
+const search=document.querySelector(".search")
+const toggle=document.querySelector(".toggle")
+const moon=document.querySelector(".moon")
+
+
 
 
 
@@ -53,7 +58,6 @@ region.forEach(element => {
   })
 });
 
-const search=document.querySelector(".search")
 
 const countryName=document.getElementsByClassName("countryName")
 search.addEventListener("input", () => {
@@ -101,3 +105,7 @@ countryModal.classList.toggle("show")
 })
 }
 
+toggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark")
+  moon.classList.toggle("fas")
+})
